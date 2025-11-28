@@ -1,31 +1,55 @@
-import { useState, useEffect } from "react";
-import { Zap } from "lucide-react";
+import { useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 const Navbar = ({ onOpenWaitlist }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
+  });
 
   return (
-    <nav
-      className={`main-nav fixed z-50 bg-zinc-950/80 backdrop-blur-md ${
-        isScrolled ? "nav-scrolled" : ""
-      }`}
+    <motion.nav
+      initial={{
+        width: "100%",
+        top: 0,
+        borderRadius: 0,
+        borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
+        background: "rgba(9, 9, 11, 0.8)",
+      }}
+      animate={
+        isScrolled
+          ? {
+              width: "90%",
+              maxWidth: "1200px",
+              top: 20,
+              left: "50%",
+              x: "-50%",
+              borderRadius: 9999,
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              background: "rgba(9, 9, 11, 0.85)",
+              boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5)",
+            }
+          : {
+              width: "100%",
+              maxWidth: "100%",
+              top: 0,
+              left: "50%",
+              x: "-50%",
+              borderRadius: 0,
+              border: "1px solid rgba(255, 255, 255, 0.05)",
+              background: "rgba(9, 9, 11, 0.8)",
+              boxShadow: "none",
+            }
+      }
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed z-50 backdrop-blur-md"
     >
       <div className="w-full px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2 group cursor-pointer">
-          <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-zinc-950">
-            <Zap className="w-3 h-3 fill-current" />
-          </div>
-          <span className="text-sm font-medium tracking-tighter uppercase group-hover:opacity-80 transition-opacity">
-            Utopia
+          <span className="text-2xl font-bold tracking-tight text-white/40" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+            UTOPIA
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8 text-xs font-medium text-zinc-400">
@@ -48,7 +72,7 @@ const Navbar = ({ onOpenWaitlist }) => {
           </button>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

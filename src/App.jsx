@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import AppPreview from "./AppPreview";
 import Merchants from "./Merchants";
+import Philosophy from "./Philosophy";
 import Footer from "./Footer";
 import WaitlistModal from "./WaitlistModal";
 
@@ -25,6 +26,7 @@ function App() {
       <Hero onOpenWaitlist={openWaitlistModal} />
       <AppPreview />
       <Merchants onOpenWaitlist={openWaitlistModal} />
+      <Philosophy />
       <Footer />
       <WaitlistModal
         isOpen={isModalOpen}
