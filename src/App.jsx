@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
-import AppPreview from "./AppPreview";
+import MobileShowcase from "./components/MobileShowcase";
+import MerchantShowcase from "./components/MerchantShowcase";
 import Merchants from "./Merchants";
 import Philosophy from "./Philosophy";
 import Footer from "./Footer";
@@ -24,7 +25,8 @@ function App() {
     <div className="bg-zinc-950 min-h-screen text-zinc-50">
       <Navbar onOpenWaitlist={openWaitlistModal} />
       <Hero onOpenWaitlist={openWaitlistModal} />
-      <AppPreview />
+      <MobileShowcase />
+      <MerchantShowcase />
       <Merchants onOpenWaitlist={openWaitlistModal} />
       <Philosophy />
       <Footer />

@@ -242,7 +242,7 @@ const WaitlistModal = ({ isOpen, onClose, initialTab = "customer" }) => {
                           Early Access Benefit
                         </p>
                         <p className="text-zinc-500 text-[10px]">
-                          3 months free for early merchants!
+                          lifetime free for early merchants!
                         </p>
                       </div>
                     </div>
